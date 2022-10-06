@@ -23,3 +23,14 @@ exports.deleteAmenidad = async(req,res) => {
       .then((data) => res.status(201).json(data))
       .catch((err) => res.status(501).json(err));
 }
+
+exports.addAmenidades = async(req,res)=>{
+  const amenidad=req.body
+  await amenidad.forEach(async(am) => {
+    const ame = Amenidad(am)
+    await ame.save()
+    .then(()=>{})
+    .catch((err)=>res.status(501).json(err))
+  });
+  res.status(201).json({hi:'hi'})
+}

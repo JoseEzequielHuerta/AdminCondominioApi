@@ -4,7 +4,6 @@ const amenidadSchema = new Schema(
   {
     nombre: {
       type: String,
-      required: true,
     },
     tipo:{
         type:Number,
