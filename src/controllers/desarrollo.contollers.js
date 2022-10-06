@@ -9,17 +9,17 @@ exports.getById = async (req,res) => {
 
 exports.getDesarrollosActive = async (_, res) => {
     const desarrollos = await Desarrollo.find({done: { $eq:1 }})
-    res.send(desarrollos)
+    res.status(201).json(desarrollos)
 }
 
 exports.getDesarrollosInactive = async (_, res) => {
     const desarrollos = await Desarrollo.find({ done: { $gt: 1 } }).sort({done:1});
-    res.send(desarrollos);
+    res.status(201).json(desarrollos)
 }
 
 exports.getDesarrollos = async (_, res) => {
     const desarrollos = await Desarrollo.find();
-    res.send(desarrollos)
+    res.status(201).json(desarrollos)
 }
 
 exports.addDesarrollo = async (req, res) => {
@@ -60,18 +60,21 @@ exports.inactiveDesarrollo = async (req,res) => {
 
 exports.getDesarrollosByIdClient = async(req,res) => {
     const { id } = req.params;
-    const desarrollos = Desarrollo.find({idClient:`${id}`})
-    res.send(desarrollos)
+    Desarrollo.find({idClient:`${id}`})
+    .then((data)=>res.status(201).json(data))
+    .catch((err)=>res.status(501).json(err))
 }
 
 exports.getDessarrollosByIdClientActive = async(req,res) => {
     const { id } = req.params;
-    const desarrollos = Desarrollo.find({idClient:`${id}`,done:{ $eq: 1 }})
-    res.send(desarrollos)
+    Desarrollo.find({idClient:`${id}`,done:{ $eq: 1 }})
+    .then((data)=>res.status(201).json(data))
+    .catch((err)=>res.status(501).json(err))
 }
 
 exports.getDessarrollosByIdClientInactive = async(req,res) => {
     const { id } = req.params;
-    const desarrollos = Desarrollo.find({idClient:`${id}`,done:{ $gt: 1 }})
-    res.send(desarrollos)
+    Desarrollo.find({idClient:`${id}`,done:{ $gt: 1 }})
+    .then((data)=>res.status(201).json(data))
+    .catch((err)=>res.status(501).json(err))
 }

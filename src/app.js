@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/cliente",clienteRoutes);
-app.use("/desarrolloRoutes",desarrolloRoutes);
+app.use("/desarrollo",desarrolloRoutes);
 app.use("/amenidad",amenidadRoutes);
 app.use("/auth",loginRoutes)
 
