@@ -36,7 +36,7 @@ exports.login = async (req,res)=>{
                     name:data.name,
                     correo:data.correo,
                     id:data._id
-                },process.env.TOKEN_SECRET)
+                },process.env.TOKEN_SECRET,{ expiresIn: '4h' })
                 return res.status(201).json({message:"Pass",token:token})
             })
         })
